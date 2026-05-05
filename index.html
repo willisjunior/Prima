@@ -1,225 +1,1336 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afeto com Estilo | Hub & Blog</title>
+    <meta name="description" content="Afeto com Estilo: arquitetura, decoracao, reforma e DIY facil para transformar sua casa com solucoes praticas.">
+    <meta name="theme-color" content="#263b35">
+    <meta property="og:title" content="Afeto com Estilo | Arquitetura, decoracao e reforma">
+    <meta property="og:description" content="Dicas de casa, decoracao, reforma e DIY facil com Leidiane.">
+    <meta property="og:image" content="https://cdn.beacons.ai/user_content/fXrcLBNd5cXppj9KfDxkG3NlVJA3/profile_afetocomestilo.png?q=1763576496.483757">
+    <meta property="og:type" content="website">
+    <title>Afeto com Estilo | Arquitetura, Decora&ccedil;&atilde;o e Reforma</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23263b35'/%3E%3Cpath d='M14 31 32 16l18 15' fill='none' stroke='%23f7efe3' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M22 32v16h20V32' fill='none' stroke='%23f7efe3' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M32 42c-6-4-9-7-9-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4-3 7-9 11Z' fill='%23c66b4e'/%3E%3C/svg%3E">
     <style>
         :root {
-            --cor-fundo: #f9f7f4;
-            --cor-primaria: #5d6d5a; /* Verde oliva suave */
-            --cor-texto: #333;
-            --cor-detalhe: #d4a373; /* Tom madeira/terra */
-            --branco: #ffffff;
+            --bg: #f6f1e8;
+            --paper: #fffaf3;
+            --white: #ffffff;
+            --ink: #1f2925;
+            --muted: #657168;
+            --line: #e3d8cc;
+            --sage: #42685f;
+            --sage-dark: #263b35;
+            --clay: #b96247;
+            --gold: #d4a15d;
+            --blue: #dfe9ef;
+            --shadow: 0 22px 50px rgba(31, 41, 37, 0.12);
         }
 
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto);
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+            letter-spacing: 0;
         }
 
-        .container {
-            max-width: 480px; /* Simula tela de celular */
-            width: 100%;
-            background: var(--branco);
-            min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-            padding-bottom: 40px;
+        body.no-scroll {
+            overflow: hidden;
         }
 
-        /* Hero Section */
-        .hero {
+        a {
+            color: inherit;
+        }
+
+        img,
+        svg {
+            display: block;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: 16px;
+            top: -80px;
+            z-index: 30;
+            background: var(--sage-dark);
+            color: var(--white);
+            padding: 10px 14px;
+            border-radius: 8px;
+            transition: top 180ms ease;
+        }
+
+        .skip-link:focus {
+            top: 16px;
+        }
+
+        .announcement {
+            background: var(--sage-dark);
+            color: #fdf8f0;
+            padding: 8px 16px;
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(180deg, #f0ede9 0%, #ffffff 100%);
+            font-size: 0.84rem;
         }
 
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid var(--cor-detalhe);
-            margin-bottom: 15px;
-            object-fit: cover;
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid rgba(227, 216, 204, 0.85);
+            background: rgba(246, 241, 232, 0.94);
+            backdrop-filter: blur(18px);
+        }
+
+        .topbar-inner,
+        .hero-inner,
+        .section-inner,
+        .footer-inner {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .topbar-inner {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            min-width: 0;
+        }
+
+        .brand-mark {
+            width: 48px;
+            height: 48px;
+            flex: 0 0 48px;
+        }
+
+        .brand-name {
+            display: grid;
+            gap: 1px;
+            min-width: 0;
+        }
+
+        .brand-name strong {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .brand-name span {
+            color: var(--muted);
+            font-size: 0.78rem;
+            white-space: nowrap;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav a,
+        .nav button {
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            padding: 10px 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .nav a:hover,
+        .nav button:hover {
+            background: rgba(66, 104, 95, 0.1);
+        }
+
+        .share-note {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 40;
+            max-width: min(340px, calc(100% - 36px));
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: var(--sage-dark);
+            color: var(--white);
+            box-shadow: var(--shadow);
+            transform: translateY(24px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+
+        .share-note.is-visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .hero {
+            border-bottom: 1px solid var(--line);
+            background:
+                linear-gradient(90deg, rgba(223, 233, 239, 0.45), transparent 52%),
+                var(--bg);
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+            gap: 48px;
+            align-items: center;
+            padding: 64px 0 56px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            color: var(--sage-dark);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 38px;
+            height: 2px;
+            background: var(--clay);
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin: 0;
         }
 
         h1 {
-            font-size: 1.4rem;
-            color: var(--cor-primaria);
-            margin-bottom: 10px;
+            max-width: 760px;
+            font-size: clamp(2.7rem, 8vw, 5.8rem);
+            line-height: 0.95;
+            letter-spacing: 0;
         }
 
-        .bio {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 25px;
+        h1 span {
+            color: var(--sage);
         }
 
-        /* CTAs Principais */
-        .cta-buttons {
+        .hero-copy {
+            max-width: 620px;
+            margin-top: 22px;
+            color: #39453f;
+            font-size: clamp(1rem, 2vw, 1.18rem);
+        }
+
+        .hero-actions {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 12px;
-            padding: 0 20px;
+            margin-top: 30px;
         }
 
         .btn {
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-align: center;
-            transition: transform 0.2s;
-            font-size: 0.95rem;
-        }
-
-        .btn-primary { background-color: var(--cor-primaria); color: white; }
-        .btn-secondary { border: 2px solid var(--cor-primaria); color: var(--cor-primaria); }
-
-        .btn:active { transform: scale(0.98); }
-
-        /* Blog Feed Section */
-        .section-title {
-            padding: 30px 20px 15px;
-            font-size: 1.1rem;
-            display: flex;
-            justify-content: space-between;
+            display: inline-flex;
             align-items: center;
-        }
-
-        .section-title a { font-size: 0.8rem; color: var(--cor-detalhe); text-decoration: none; }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            padding: 0 20px;
-        }
-
-        .blog-card {
-            background: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #eee;
-        }
-
-        .card-img {
-            width: 100%;
-            height: 120px;
-            background-color: #eee;
-            object-fit: cover;
-        }
-
-        .card-content { padding: 10px; }
-
-        .card-content h3 {
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        /* Lead Magnet */
-        .newsletter {
-            margin: 40px 20px 20px;
-            padding: 25px;
-            background-color: #f4f1ee;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .newsletter h2 { font-size: 1.1rem; margin-bottom: 10px; color: var(--cor-primaria); }
-        .newsletter p { font-size: 0.8rem; margin-bottom: 15px; }
-
-        input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: var(--cor-detalhe);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 5px;
-            font-weight: bold;
+            justify-content: center;
+            gap: 10px;
+            min-height: 48px;
+            border: 1px solid transparent;
+            border-radius: 8px;
             cursor: pointer;
+            padding: 12px 18px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
         }
 
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: var(--sage-dark);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #1b2c28;
+        }
+
+        .btn-secondary {
+            background: var(--paper);
+            border-color: var(--line);
+            color: var(--sage-dark);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--sage);
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+        }
+
+        .hero-proof {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 34px;
+            max-width: 580px;
+        }
+
+        .proof-item {
+            border-left: 3px solid var(--clay);
+            padding: 2px 0 2px 12px;
+        }
+
+        .proof-item strong {
+            display: block;
+            color: var(--sage-dark);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            line-height: 1;
+        }
+
+        .proof-item span {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .profile-scene {
+            position: relative;
+            min-height: 430px;
+            display: grid;
+            place-items: center;
+        }
+
+        .profile-ring {
+            position: absolute;
+            inset: 24px;
+            border: 1px solid rgba(66, 104, 95, 0.2);
+            border-radius: 999px;
+        }
+
+        .profile-ring::before,
+        .profile-ring::after {
+            content: "";
+            position: absolute;
+            width: 84px;
+            height: 84px;
+            border-radius: 8px;
+            background: var(--gold);
+        }
+
+        .profile-ring::before {
+            left: 10px;
+            top: 42px;
+        }
+
+        .profile-ring::after {
+            right: 18px;
+            bottom: 34px;
+            background: var(--blue);
+        }
+
+        .profile-photo {
+            position: relative;
+            z-index: 2;
+            width: min(310px, 76vw);
+            aspect-ratio: 1;
+            border: 8px solid var(--paper);
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+            object-fit: cover;
+            background: var(--paper);
+        }
+
+        .topic-pills {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 8px;
+            z-index: 3;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .topic-pills a {
+            border: 1px solid rgba(38, 59, 53, 0.12);
+            border-radius: 8px;
+            background: rgba(255, 250, 243, 0.92);
+            color: var(--sage-dark);
+            padding: 9px 11px;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 800;
+            box-shadow: 0 12px 24px rgba(31, 41, 37, 0.08);
+        }
+
+        .section {
+            padding: 72px 0;
+            background: var(--paper);
+        }
+
+        .section.alt {
+            background: var(--white);
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .section-kicker {
+            color: var(--clay);
+            font-size: 0.76rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin-top: 6px;
+            color: var(--ink);
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            line-height: 1.04;
+            letter-spacing: 0;
+        }
+
+        .section-heading p {
+            max-width: 440px;
+            color: var(--muted);
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .link-card {
+            min-height: 210px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--white);
+            padding: 20px;
+            text-decoration: none;
+            transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(66, 104, 95, 0.35);
+            box-shadow: 0 18px 42px rgba(31, 41, 37, 0.1);
+        }
+
+        .link-card .icon-badge {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            background: rgba(66, 104, 95, 0.1);
+            color: var(--sage-dark);
+        }
+
+        .link-card h3 {
+            margin-top: 24px;
+            color: var(--ink);
+            font-size: 1.12rem;
+            line-height: 1.15;
+        }
+
+        .link-card p {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .link-card .arrow {
+            margin-top: 22px;
+            color: var(--clay);
+            font-weight: 900;
+        }
+
+        .social-strip {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 52px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--paper);
+            color: var(--sage-dark);
+            padding: 12px 14px;
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+        .social-button:hover {
+            border-color: var(--sage);
+            background: #f7efe3;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .filter-button {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--muted);
+            cursor: pointer;
+            padding: 10px 14px;
+            font-weight: 800;
+        }
+
+        .filter-button[aria-selected="true"] {
+            border-color: var(--sage-dark);
+            background: var(--sage-dark);
+            color: var(--white);
+        }
+
+        .tip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .tip-card {
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--white);
+        }
+
+        .tip-card[hidden] {
+            display: none;
+        }
+
+        .tip-thumb {
+            position: relative;
+            min-height: 160px;
+            aspect-ratio: 1.35;
+            overflow: hidden;
+            border-bottom: 1px solid var(--line);
+            background: var(--blue);
+        }
+
+        .tip-thumb::before,
+        .tip-thumb::after {
+            content: "";
+            position: absolute;
+        }
+
+        .tip-thumb.kitchen {
+            background:
+                linear-gradient(90deg, #c88a53 0 28%, transparent 28%),
+                linear-gradient(#e7f1f2 0 42%, #f4efe7 42%);
+        }
+
+        .tip-thumb.kitchen::before {
+            left: 38%;
+            top: 18%;
+            width: 34%;
+            height: 32%;
+            border: 8px solid #fdf8f0;
+            background: #b7d6d7;
+        }
+
+        .tip-thumb.kitchen::after {
+            left: 18%;
+            right: 12%;
+            bottom: 18%;
+            height: 18%;
+            border-radius: 8px;
+            background: #263b35;
+        }
+
+        .tip-thumb.room {
+            background:
+                linear-gradient(90deg, rgba(38, 59, 53, 0.12) 1px, transparent 1px) 0 0 / 22px 100%,
+                linear-gradient(#d9c1a6 0 54%, #f6f1e8 54%);
+        }
+
+        .tip-thumb.room::before {
+            left: 12%;
+            right: 12%;
+            bottom: 16%;
+            height: 24%;
+            border-radius: 8px 8px 4px 4px;
+            background: var(--sage);
+        }
+
+        .tip-thumb.room::after {
+            right: 12%;
+            top: 22%;
+            width: 22%;
+            height: 28%;
+            border-radius: 8px;
+            background: var(--paper);
+        }
+
+        .tip-thumb.diy {
+            background:
+                linear-gradient(135deg, rgba(185, 98, 71, 0.9) 0 22%, transparent 22%),
+                linear-gradient(#eef4f1 0 50%, #d4a15d 50%);
+        }
+
+        .tip-thumb.diy::before {
+            left: 18%;
+            top: 24%;
+            width: 56%;
+            height: 12%;
+            border-radius: 8px;
+            background: var(--sage-dark);
+            transform: rotate(-10deg);
+        }
+
+        .tip-thumb.diy::after {
+            right: 18%;
+            bottom: 18%;
+            width: 18%;
+            height: 44%;
+            border-radius: 8px;
+            background: var(--paper);
+        }
+
+        .tip-thumb.cleaning {
+            background:
+                radial-gradient(circle at 70% 28%, #ffffff 0 10%, transparent 11%),
+                linear-gradient(120deg, #dfe9ef 0 48%, #b96247 48%);
+        }
+
+        .tip-thumb.cleaning::before {
+            left: 20%;
+            top: 22%;
+            width: 26%;
+            height: 52%;
+            border: 8px solid #ffffff;
+            border-radius: 8px 8px 18px 18px;
+            background: rgba(255, 255, 255, 0.28);
+            transform: rotate(-12deg);
+        }
+
+        .tip-content {
+            padding: 16px;
+        }
+
+        .tag {
+            display: inline-flex;
+            width: fit-content;
+            border-radius: 8px;
+            background: rgba(185, 98, 71, 0.1);
+            color: var(--clay);
+            padding: 6px 8px;
+            font-size: 0.72rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .tip-content h3 {
+            min-height: 58px;
+            margin-top: 12px;
+            color: var(--ink);
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+
+        .tip-content a {
+            display: inline-flex;
+            margin-top: 14px;
+            color: var(--sage-dark);
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+        .contact-band {
+            background: var(--sage-dark);
+            color: var(--white);
+        }
+
+        .contact-band .section-heading h2,
+        .contact-band .section-heading p {
+            color: var(--white);
+        }
+
+        .contact-band .section-kicker {
+            color: #e5ba7c;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .contact-list a,
+        .copy-email {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            width: 100%;
+            min-height: 56px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--white);
+            cursor: pointer;
+            padding: 12px 14px;
+            text-align: left;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        .contact-list a span,
+        .copy-email span {
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .form-panel {
+            border-radius: 8px;
+            background: var(--paper);
+            color: var(--ink);
+            padding: 24px;
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.16);
+        }
+
+        .form-panel h3 {
+            color: var(--sage-dark);
+            font-size: 1.35rem;
+            line-height: 1.1;
+        }
+
+        .form-panel p {
+            margin-top: 8px;
+            color: var(--muted);
+        }
+
+        .lead-form {
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .field {
+            display: grid;
+            gap: 6px;
+        }
+
+        .field label {
+            color: var(--sage-dark);
+            font-size: 0.85rem;
+            font-weight: 900;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            min-height: 48px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--ink);
+            padding: 12px 13px;
+            outline: none;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: var(--sage);
+            box-shadow: 0 0 0 3px rgba(66, 104, 95, 0.14);
+        }
+
+        .form-status {
+            min-height: 22px;
+            color: var(--sage-dark);
+            font-size: 0.88rem;
+            font-weight: 800;
+        }
+
+        .footer {
+            background: #192521;
+            color: rgba(255, 255, 255, 0.72);
+            padding: 24px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            font-size: 0.88rem;
+        }
+
+        .footer a {
+            color: var(--white);
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        @media (max-width: 920px) {
+            .hero-inner,
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-inner {
+                padding-top: 46px;
+            }
+
+            .profile-scene {
+                min-height: 360px;
+            }
+
+            .link-grid,
+            .tip-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .social-strip {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 680px) {
+            .announcement {
+                font-size: 0.78rem;
+            }
+
+            .topbar-inner,
+            .hero-inner,
+            .section-inner,
+            .footer-inner {
+                width: min(100% - 28px, 1120px);
+            }
+
+            .topbar-inner {
+                min-height: 66px;
+            }
+
+            .brand-name span {
+                display: none;
+            }
+
+            .nav a {
+                display: none;
+            }
+
+            .nav button {
+                padding-inline: 10px;
+            }
+
+            .hero-inner {
+                gap: 30px;
+                padding: 42px 0 48px;
+            }
+
+            .hero-actions,
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .hero-proof {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-scene {
+                min-height: 330px;
+            }
+
+            .profile-ring {
+                inset: 18px 6px 38px;
+            }
+
+            .profile-photo {
+                width: min(250px, 72vw);
+            }
+
+            .section {
+                padding: 54px 0;
+            }
+
+            .section-heading {
+                display: grid;
+                align-items: start;
+            }
+
+            .link-grid,
+            .tip-grid,
+            .social-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .link-card {
+                min-height: auto;
+            }
+
+            .footer-inner {
+                display: grid;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#conteudo">Pular para o conte&uacute;do</a>
 
-<div class="container">
-    <header class="hero">
-        <img src="https://via.placeholder.com/150" alt="Leidiane" class="profile-img">
-        <h1>Afeto com Estilo</h1>
-        <p class="bio">Soluções práticas de decoração, reforma e DIY para transformar sua casa com afeto.</p>
-        
-        <div class="cta-buttons">
-            <a href="#" class="btn btn-primary">🛒 Meus Achadinhos Amazon</a>
-            <a href="#" class="btn btn-secondary">📐 Solicitar Consultoria</a>
-            <a href="#" class="btn btn-secondary">📩 Parcerias e Publis</a>
+    <div class="announcement">Dicas de casa, decora&ccedil;&atilde;o, reforma e DIY f&aacute;cil para o dia a dia.</div>
+
+    <header class="topbar" aria-label="Topo">
+        <div class="topbar-inner">
+            <a class="brand" href="#inicio" aria-label="Afeto com Estilo">
+                <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-labelledby="logo-title">
+                    <title id="logo-title">Logo Afeto com Estilo</title>
+                    <rect width="64" height="64" rx="14" fill="#263b35"></rect>
+                    <path d="M13.5 31.5 32 16l18.5 15.5" fill="none" stroke="#fffaf3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M21.5 32.5v16h21v-16" fill="none" stroke="#fffaf3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M32 42.5c-6.1-4.2-9.2-7.3-9.2-11.3 0-2.8 2.1-5 4.9-5 1.9 0 3.4 1 4.3 2.3.9-1.3 2.4-2.3 4.3-2.3 2.8 0 4.9 2.2 4.9 5 0 4-3.1 7.1-9.2 11.3Z" fill="#b96247"></path>
+                    <path d="M39 22c4.1-2.6 8.4-2.6 11.2.3-2.4 3.3-6.6 4.1-11.2 2.3V22Z" fill="#d4a15d"></path>
+                </svg>
+                <span class="brand-name">
+                    <strong>Afeto com Estilo</strong>
+                    <span>Arquitetura &bull; Decora&ccedil;&atilde;o &bull; Reforma</span>
+                </span>
+            </a>
+
+            <nav class="nav" aria-label="Navega&ccedil;&atilde;o principal">
+                <a href="#links">Links</a>
+                <a href="#dicas">Dicas</a>
+                <a href="#contato">Contato</a>
+                <button type="button" id="shareButton" aria-label="Compartilhar Afeto com Estilo">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M8.5 12.5 15.5 16.5M15.5 7.5 8.5 11.5M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM18 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                </button>
+            </nav>
         </div>
     </header>
 
-    <div class="section-title">
-        <h2>Últimas Dicas</h2>
-        <a href="#">Ver tudo</a>
-    </div>
+    <main id="conteudo">
+        <section class="hero" id="inicio">
+            <div class="hero-inner">
+                <div>
+                    <div class="eyebrow">Leidiane</div>
+                    <h1>Casa com <span>afeto</span>, rotina com estilo.</h1>
+                    <p class="hero-copy">Solu&ccedil;&otilde;es pr&aacute;ticas de arquitetura, decora&ccedil;&atilde;o, reforma e DIY para transformar ambientes sem complicar a vida real.</p>
 
-    <div class="blog-grid">
-        <article class="blog-card">
-            <div class="card-img" style="background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #999;">[Imagem Cozinha]</div>
-            <div class="card-content">
-                <h3>Sua cozinha não é pequena, ela foi mal pensada: veja como resolver</h3>
-            </div>
-        </article>
-        <article class="blog-card">
-            <div class="card-img" style="background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #999;">[Imagem Sala]</div>
-            <div class="card-content">
-                <h3>3 erros comuns que deixam qualquer sala sem graça</h3>
-            </div>
-        </article>
-        <article class="blog-card">
-            <div class="card-img" style="background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #999;">[Imagem DIY]</div>
-            <div class="card-content">
-                <h3>O segredo do rejunte perfeito: guia prático para iniciantes</h3>
-            </div>
-        </article>
-        <article class="blog-card">
-            <div class="card-img" style="background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #999;">[Imagem Compras]</div>
-            <div class="card-content">
-                <h3>Achadinhos de limpeza da Amazon que facilitam a rotina</h3>
-            </div>
-        </article>
-    </div>
+                    <div class="hero-actions" aria-label="A&ccedil;&otilde;es principais">
+                        <a class="btn btn-primary" href="mailto:afeto.estilo@gmail.com?subject=Quero%20uma%20consultoria%20-%20Afeto%20com%20Estilo&amp;body=Oi%2C%20Leidiane!%0A%0AQuero%20saber%20mais%20sobre%20consultoria%20para%20minha%20casa." aria-label="Solicitar consultoria por email">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M4 6h16v12H4V6Zm0 1 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                            </svg>
+                            Solicitar consultoria
+                        </a>
+                        <a class="btn btn-secondary" href="https://www.instagram.com/afetocomestilo" target="_blank" rel="noopener" aria-label="Abrir Instagram Afeto com Estilo">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                                <circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                                <circle cx="17" cy="7" r="1.2" fill="currentColor"></circle>
+                            </svg>
+                            Ver dicas no Instagram
+                        </a>
+                    </div>
 
-    <section class="newsletter">
-        <h2>Manual da Reforma sem Erros</h2>
-        <p>Receba meu checklist gratuito com o passo a passo para planejar sua reforma sem dor de cabeça.</p>
-        <form>
-            <input type="email" placeholder="Seu melhor e-mail" required>
-            <button type="submit" class="btn-submit">Quero receber agora!</button>
-        </form>
-    </section>
-</div>
+                    <div class="hero-proof" aria-label="Resumo do perfil">
+                        <div class="proof-item">
+                            <strong>188 mil+</strong>
+                            <span>seguidores</span>
+                        </div>
+                        <div class="proof-item">
+                            <strong>700+</strong>
+                            <span>posts</span>
+                        </div>
+                        <div class="proof-item">
+                            <strong>4</strong>
+                            <span>canais ativos</span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="profile-scene" aria-label="Foto de Leidiane">
+                    <div class="profile-ring" aria-hidden="true"></div>
+                    <img class="profile-photo" src="https://cdn.beacons.ai/user_content/fXrcLBNd5cXppj9KfDxkG3NlVJA3/profile_afetocomestilo.png?q=1763576496.483757" alt="Leidiane, criadora do Afeto com Estilo">
+                    <div class="topic-pills" aria-label="Assuntos em destaque">
+                        <a href="https://www.instagram.com/afetocomestilo" target="_blank" rel="noopener">Kit pra rejunte</a>
+                        <a href="https://www.instagram.com/afetocomestilo" target="_blank" rel="noopener">Piso manta</a>
+                        <a href="https://www.tiktok.com/@afetocomestilo" target="_blank" rel="noopener">DIY f&aacute;cil</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="links">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Links principais</p>
+                        <h2>Escolha seu caminho.</h2>
+                    </div>
+                    <p>Atalhos diretos para acompanhar as dicas, chamar para projeto, propor parceria ou salvar os conte&uacute;dos.</p>
+                </div>
+
+                <div class="link-grid">
+                    <a class="link-card" href="mailto:afeto.estilo@gmail.com?subject=Consultoria%20Afeto%20com%20Estilo&amp;body=Oi%2C%20Leidiane!%0A%0AQuero%20uma%20orientacao%20para%20meu%20ambiente." aria-label="Falar sobre consultoria por email">
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M4 20V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H8l-4 4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span>
+                            <h3>Consultoria para sua casa</h3>
+                            <p>Envie sua ideia, seu desafio e o ambiente que precisa de cuidado.</p>
+                            <span class="arrow">Come&ccedil;ar &rarr;</span>
+                        </span>
+                    </a>
+
+                    <a class="link-card" href="https://www.instagram.com/afetocomestilo" target="_blank" rel="noopener" aria-label="Abrir perfil do Instagram">
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                                <circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                            </svg>
+                        </span>
+                        <span>
+                            <h3>Dicas no Instagram</h3>
+                            <p>Cozinha, sala, acabamento, limpeza, reforma e solu&ccedil;&otilde;es do dia a dia.</p>
+                            <span class="arrow">Abrir perfil &rarr;</span>
+                        </span>
+                    </a>
+
+                    <a class="link-card" href="https://www.tiktok.com/@afetocomestilo" target="_blank" rel="noopener" aria-label="Abrir TikTok Afeto com Estilo">
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M14 4v10.5a4.5 4.5 0 1 1-4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                                <path d="M14 4c1.1 3 3 4.8 6 5.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </span>
+                        <span>
+                            <h3>DIY e reformas r&aacute;pidas</h3>
+                            <p>Ideias curtas para resolver detalhes que mudam a percep&ccedil;&atilde;o da casa.</p>
+                            <span class="arrow">Assistir &rarr;</span>
+                        </span>
+                    </a>
+
+                    <a class="link-card" href="mailto:afeto.estilo@gmail.com?subject=Parceria%20e%20publis%20-%20Afeto%20com%20Estilo&amp;body=Oi%2C%20Leidiane!%0A%0AGostaria%20de%20conversar%20sobre%20uma%20parceria." aria-label="Enviar proposta de parceria por email">
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M4 7h16v12H4V7Zm4 0V5h8v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                                <path d="M4 12h16" fill="none" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </span>
+                        <span>
+                            <h3>Parcerias e publis</h3>
+                            <p>Contato comercial para marcas, produtos e campanhas de casa.</p>
+                            <span class="arrow">Enviar proposta &rarr;</span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="social-strip" aria-label="Redes sociais">
+                    <a class="social-button" href="https://www.facebook.com/share/1CAhJ6tEK2/" target="_blank" rel="noopener">Facebook</a>
+                    <a class="social-button" href="https://www.instagram.com/afetocomestilo" target="_blank" rel="noopener">Instagram</a>
+                    <a class="social-button" href="https://www.tiktok.com/@afetocomestilo" target="_blank" rel="noopener">TikTok</a>
+                    <a class="social-button" href="https://beacons.ai/afetocomestilo" target="_blank" rel="noopener">Beacons</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt" id="dicas">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Conte&uacute;dos</p>
+                        <h2>Dicas que viram a chave da casa.</h2>
+                    </div>
+                    <p>Temas inspirados nos conte&uacute;dos do perfil, organizados para achar mais r&aacute;pido o que combina com o seu momento.</p>
+                </div>
+
+                <div class="filter-bar" role="tablist" aria-label="Filtrar dicas">
+                    <button class="filter-button" type="button" data-filter="todos" role="tab" aria-selected="true">Todos</button>
+                    <button class="filter-button" type="button" data-filter="decoracao" role="tab" aria-selected="false">Decora&ccedil;&atilde;o</button>
+                    <button class="filter-button" type="button" data-filter="reforma" role="tab" aria-selected="false">Reforma</button>
+                    <button class="filter-button" type="button" data-filter="diy" role="tab" aria-selected="false">DIY</button>
+                </div>
+
+                <div class="tip-grid">
+                    <article class="tip-card" data-topic="decoracao">
+                        <div class="tip-thumb kitchen" aria-hidden="true"></div>
+                        <div class="tip-content">
+                            <span class="tag">Decora&ccedil;&atilde;o</span>
+                            <h3>Sua cozinha n&atilde;o &eacute; pequena, ela foi mal pensada.</h3>
+                            <a href="https://www.instagram.com/afetocomestilo" target="_blank" rel="noopener">Ver no Instagram</a>
+                        </div>
+                    </article>
+
+                    <article class="tip-card" data-topic="decoracao">
+                        <div class="tip-thumb room" aria-hidden="true"></div>
+                        <div class="tip-content">
+                            <span class="tag">Ambientes</span>
+                            <h3>Esse erro deixa a casa sem gra&ccedil;a e quase ningu&eacute;m percebe.</h3>
+                            <a href="https://www.instagram.com/afetocomestilo" target="_blank" rel="noopener">Ver no Instagram</a>
+                        </div>
+                    </article>
+
+                    <article class="tip-card" data-topic="reforma">
+                        <div class="tip-thumb diy" aria-hidden="true"></div>
+                        <div class="tip-content">
+                            <span class="tag">Reforma</span>
+                            <h3>Kit pra rejunte: o b&aacute;sico que evita retrabalho.</h3>
+                            <a href="https://www.instagram.com/afetocomestilo" target="_blank" rel="noopener">Ver no Instagram</a>
+                        </div>
+                    </article>
+
+                    <article class="tip-card" data-topic="diy">
+                        <div class="tip-thumb cleaning" aria-hidden="true"></div>
+                        <div class="tip-content">
+                            <span class="tag">DIY</span>
+                            <h3>Pare de jogar PET fora: ideia simples para reaproveitar.</h3>
+                            <a href="https://www.tiktok.com/@afetocomestilo" target="_blank" rel="noopener">Ver no TikTok</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section contact-band" id="contato">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Contato</p>
+                        <h2>Fale com a Leidiane.</h2>
+                    </div>
+                    <p>Para consultoria, parceria, imprensa ou pedido de checklist, o caminho mais direto &eacute; por e-mail.</p>
+                </div>
+
+                <div class="contact-layout">
+                    <div class="contact-list" aria-label="Canais de contato">
+                        <a href="mailto:afeto.estilo@gmail.com?subject=Contato%20-%20Afeto%20com%20Estilo">
+                            E-mail
+                            <span>afeto.estilo@gmail.com</span>
+                        </a>
+                        <a href="https://www.instagram.com/afetocomestilo" target="_blank" rel="noopener">
+                            Instagram
+                            <span>@afetocomestilo</span>
+                        </a>
+                        <a href="https://www.facebook.com/share/1CAhJ6tEK2/" target="_blank" rel="noopener">
+                            Facebook
+                            <span>Afeto e Estilo</span>
+                        </a>
+                        <button class="copy-email" type="button" id="copyEmail">
+                            Copiar e-mail
+                            <span>Um clique para copiar</span>
+                        </button>
+                    </div>
+
+                    <div class="form-panel">
+                        <h3>Manual da reforma sem erros</h3>
+                        <p>Receba o checklist gratuito com o passo a passo para planejar sua reforma com mais clareza.</p>
+                        <form class="lead-form" id="leadForm">
+                            <div class="field">
+                                <label for="leadEmail">Seu melhor e-mail</label>
+                                <input id="leadEmail" name="email" type="email" placeholder="voce@email.com" autocomplete="email" required>
+                            </div>
+                            <div class="field">
+                                <label for="leadInterest">Interesse principal</label>
+                                <select id="leadInterest" name="interesse" required>
+                                    <option value="">Selecione uma op&ccedil;&atilde;o</option>
+                                    <option>Reforma</option>
+                                    <option>Decora&ccedil;&atilde;o</option>
+                                    <option>DIY</option>
+                                    <option>Consultoria</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Quero receber agora</button>
+                            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>&copy; <span id="year"></span> Afeto com Estilo. Conte&uacute;do, casa e escolhas com carinho.</p>
+            <a href="#inicio">Voltar ao topo</a>
+        </div>
+    </footer>
+
+    <div class="share-note" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+        const brandEmail = "afeto.estilo@gmail.com";
+        const shareUrl = "https://beacons.ai/afetocomestilo";
+        const shareTitle = "Afeto com Estilo";
+        const toast = document.getElementById("toast");
+        let toastTimer;
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add("is-visible");
+            window.clearTimeout(toastTimer);
+            toastTimer = window.setTimeout(() => {
+                toast.classList.remove("is-visible");
+            }, 3200);
+        }
+
+        async function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                return;
+            }
+
+            const area = document.createElement("textarea");
+            area.value = text;
+            area.setAttribute("readonly", "");
+            area.style.position = "fixed";
+            area.style.left = "-9999px";
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand("copy");
+            document.body.removeChild(area);
+        }
+
+        document.getElementById("shareButton").addEventListener("click", async () => {
+            try {
+                if (navigator.share) {
+                    await navigator.share({
+                        title: shareTitle,
+                        text: "Dicas de casa, decoracao, reforma e DIY facil.",
+                        url: shareUrl
+                    });
+                    return;
+                }
+
+                await copyText(shareUrl);
+                showToast("Link copiado.");
+            } catch (error) {
+                showToast("Nao foi possivel compartilhar agora.");
+            }
+        });
+
+        document.getElementById("copyEmail").addEventListener("click", async () => {
+            try {
+                await copyText(brandEmail);
+                showToast("Email copiado.");
+            } catch (error) {
+                showToast("Nao foi possivel copiar o email.");
+            }
+        });
+
+        const filterButtons = document.querySelectorAll(".filter-button");
+        const tipCards = document.querySelectorAll(".tip-card");
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const filter = button.dataset.filter;
+
+                filterButtons.forEach((item) => {
+                    item.setAttribute("aria-selected", String(item === button));
+                });
+
+                tipCards.forEach((card) => {
+                    const shouldShow = filter === "todos" || card.dataset.topic === filter;
+                    card.hidden = !shouldShow;
+                });
+            });
+        });
+
+        document.getElementById("leadForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const form = event.currentTarget;
+            if (!form.reportValidity()) {
+                return;
+            }
+
+            const visitorEmail = document.getElementById("leadEmail").value.trim();
+            const interest = document.getElementById("leadInterest").value;
+            const subject = encodeURIComponent("Checklist Afeto com Estilo");
+            const body = encodeURIComponent(
+                "Oi, Leidiane!\n\n" +
+                "Quero receber o checklist Manual da reforma sem erros.\n\n" +
+                "Meu email: " + visitorEmail + "\n" +
+                "Interesse principal: " + interest + "\n"
+            );
+
+            document.getElementById("formStatus").textContent = "Pronto! Abrindo seu email para concluir o pedido.";
+            window.location.href = "mailto:" + brandEmail + "?subject=" + subject + "&body=" + body;
+            form.reset();
+        });
+    </script>
 </body>
 </html>
