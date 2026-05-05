@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afeto com Estilo | Hub & Blog</title>
+    <style>
+        :root {
+            --cor-fundo: #f9f7f4;
+            --cor-primaria: #5d6d5a; /* Verde oliva suave */
+            --cor-texto: #333;
+            --cor-detalhe: #d4a373; /* Tom madeira/terra */
+            --branco: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px; /* Simula tela de celular */
+            width: 100%;
+            background: var(--branco);
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            padding-bottom: 40px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, #f0ede9 0%, #ffffff 100%);
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--cor-detalhe);
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: var(--cor-primaria);
+            margin-bottom: 10px;
+        }
+
+        .bio {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* CTAs Principais */
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 0 20px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            transition: transform 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary { background-color: var(--cor-primaria); color: white; }
+        .btn-secondary { border: 2px solid var(--cor-primaria); color: var(--cor-primaria); }
+
+        .btn:active { transform: scale(0.98); }
+
+        /* Blog Feed Section */
+        .section-title {
+            padding: 30px 20px 15px;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title a { font-size: 0.8rem; color: var(--cor-detalhe); text-decoration: none; }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 0 20px;
+        }
+
+        .blog-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 120px;
+            background-color: #eee;
+            object-fit: cover;
+        }
+
+        .card-content { padding: 10px; }
+
+        .card-content h3 {
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Lead Magnet */
+        .newsletter {
+            margin: 40px 20px 20px;
+            padding: 25px;
+            background-color: #f4f1ee;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .newsletter h2 { font-size: 1.1rem; margin-bottom: 10px; color: var(--cor-primaria); }
+        .newsletter p { font-size: 0.8rem; margin-bottom: 15px; }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--cor-detalhe);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="hero">
+        <img src="https://via.placeholder.com/150" alt="Leidiane" class="profile-img">
+        <h1>Afeto com Estilo</h1>
+        <p class="bio">Soluções práticas de decoração, reforma e DIY para transformar sua casa com afeto.</p>
+        
+        <div class="cta-buttons">
+            <a href="#" class="btn btn-primary">🛒 Meus Achadinhos Amazon</a>
+            <a href="#" class="btn btn-secondary">📐 Solicitar Consultoria</a>
+            <a href="#" class="btn btn-secondary">📩 Parcerias e Publis</a>
+        </div>
+    </header>
+
+    <div class="section-title">
+        <h2>Últimas Dicas</h2>
+        <a href="#">Ver tudo</a>
+    </div>
+
+    <div class="blog-grid">
+        <article class="blog-card">
+            <div class="card-img" style="background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #999;">[Imagem Cozinha]</div>
+            <div class="card-content">
+                <h3>Sua cozinha não é pequena, ela foi mal pensada: veja como resolver</h3>
+            </div>
+        </article>
+        <article class="blog-card">
+            <div class="card-img" style="background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #999;">[Imagem Sala]</div>
+            <div class="card-content">
+                <h3>3 erros comuns que deixam qualquer sala sem graça</h3>
+            </div>
+        </article>
+        <article class="blog-card">
+            <div class="card-img" style="background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #999;">[Imagem DIY]</div>
+            <div class="card-content">
+                <h3>O segredo do rejunte perfeito: guia prático para iniciantes</h3>
+            </div>
+        </article>
+        <article class="blog-card">
+            <div class="card-img" style="background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #999;">[Imagem Compras]</div>
+            <div class="card-content">
+                <h3>Achadinhos de limpeza da Amazon que facilitam a rotina</h3>
+            </div>
+        </article>
+    </div>
+
+    <section class="newsletter">
+        <h2>Manual da Reforma sem Erros</h2>
+        <p>Receba meu checklist gratuito com o passo a passo para planejar sua reforma sem dor de cabeça.</p>
+        <form>
+            <input type="email" placeholder="Seu melhor e-mail" required>
+            <button type="submit" class="btn-submit">Quero receber agora!</button>
+        </form>
+    </section>
+</div>
+
+</body>
+</html>
